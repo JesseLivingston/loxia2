@@ -452,6 +452,29 @@
                     }
                     t += "</select>";
                 }
+                
+                if(this.option("buttons")){
+                	t += "<div class='operate-buttons'>";
+                	for(var i in this.option("buttons")){
+                		var button = this.option("buttons")[i];
+                		if(button.mode && button.mode == "sync"){
+                			t += "<form action='" + button.url + "' class='syncBatchForm' method='POST'>";
+                			
+                			t += 	"<button class='button batchOperation' disabled='disabled' value='" + button.name + "'>" + button.name + "</button>"
+                			t += "</form>"
+                			
+                		}else{
+                			t += "<button class='button batchOperation' disabled='disabled'";
+                    		t += " title='";
+                    		t += button.name;
+                    		t += "' target='"; 
+                    		t += button.url + "'>";
+                    		t += button.name + "</button>";
+                		}
+                		
+                	}
+                	t += "</div>";
+                }
 
                 t += "<div class='nav-pager'>";
                 t += "<a href='javascript:void(0);' class='home' title='" + loxia.getLocaleMsg("LABEL_PAGE_FIRST") + "'> << </a>";
